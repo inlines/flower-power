@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=Password8*
+  flower-power-2:
+    image: ${DOCKER_REGISTRY-}flowerpower2
+    build:
+      context: .
+      dockerfile: flower-power-2/Dockerfile
+    depends_on:
+        - db
